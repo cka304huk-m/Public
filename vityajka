@@ -10,8 +10,7 @@ while running:
         rez = dl * sh * vi * a
         print('Необходимая кубатура:',+rez)
     elif y == 'выход': # Если написать 'выход' приложение завершается.
-        running = False
-        print('Пока')
+        break
     else:
         r2_kv = float(input('Введите сколько квадратов:'))
         r2_vi = float(input('Введите высоту:'))
