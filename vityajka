@@ -1,26 +1,35 @@
 #Расчёт кубатуры вытяжки для кухни
 a = 12 # Оптимальный воздухообмен за час
 
-cube_active = True # устанавил флаг начала цикла
-
-while cube_active:
+while True:
     cube = str(input('Известна кубатура кухни? Да или нет: '))
     if cube == 'нет':
-        cube_active = False # флаг завершения цикла, при условии cube == 'нет':
+        print("Для завершения программы напишите - 'выход'!")
         try:
-            dl = float(input('Длина: '))
-            sh = float(input('Ширина: '))
-            vi = float(input('Высота: '))
-            rez = dl * sh * vi * a
+            dl = input('Длина: ')
+            if dl == 'выход':
+                break
+            sh = input('Ширина: ')
+            if sh == 'выход':
+                break
+            vi = input('Высота: ')
+            if vi == 'выход':
+                break
+            rez = float(dl) * float(sh) * float(vi) * a
         except ValueError:
             print('Нужно вводить только цифры! Давайте начнем с начала!')
         else:
             print('Необходимая кубатура:',+rez)
     else:
+        print("Для завершения программы напишите - 'выход'!")
         try:
-            r2_kv = float(input('Введите сколько квадратов:'))
-            r2_vi = float(input('Введите высоту:'))
-            r2_rez = r2_kv * r2_vi * a
+            r2_kv = input('Введите сколько квадратов:')
+            if r2_kv == 'выход':
+                break
+            r2_vi = input('Введите высоту:')
+            if r2_vi == 'выход':
+                break
+            r2_rez = float(r2_kv) * float(r2_vi) * a
         except ValueError:
             print('Нужно вводить только цифры! Давайте начнем с начала!')
         else:
