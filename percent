@@ -3,16 +3,24 @@
 dig = 100
 
 while True:
-	deposit = input('Сумма депозита: ')
-	interest_rate = input('Годовая процентная ставка: ')
-	days = input('На какой период, укажите в днях: ')
-	days_year = input('Кол-во дней в году: ')
+    try:
+        deposit = input('Сумма депозита: ')
+        interest_rate = input('Годовая процентная ставка: ')
+        days = input('На какой период, укажите в днях: ')
+        days_year = input('Кол-во дней в году: ')
 
-	sum = (float(deposit) * int(interest_rate) * int(days)) / (int(days_year) * int(dig))
+        sum = (float(deposit) * int(interest_rate) * int(days)) / (int(days_year) * int(dig))
+        r_sum = (float(sum) / int(days)) * int(days)
+        all_sum = float(r_sum) + float(sum)
+    except ValueError:
+        print("Вводите пожалуйста только цифры!")
+        print("Начнем с начала!")
+        continue
+    else:
+        print("Вы получите - " + str(all_sum) + ", из них + " + str(r_sum) + " было рефенинсированно, " + " за " + str(days) + " дней.")
 
-	print("Вы получите - " + str(sum) + " за " + str(days)   + " дней.")
-	repeat = input("Посчитать еще? Напишите 'нет' для выхода из программы: ")
-	if repeat == 'нет':
-		break
-	else:
-		continue
+    repeat = input("Посчитать еще? Напишите 'нет' для выхода из программы: ")
+    if repeat == 'нет':
+        break
+    else:
+        continue
