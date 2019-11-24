@@ -4,7 +4,7 @@ dig = 100
 
 while True:
 	deposit = input('Сумма депозита: ')
-	interest_rate = 					input('Годовая процентная ставка: ')
+	interest_rate = input('Годовая процентная ставка: ')
 	days = input('На какой период, укажите в днях: ')
 	days_year = input('Кол-во дней в году: ')
 
