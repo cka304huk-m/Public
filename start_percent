@@ -1,6 +1,4 @@
-# калькулятор расчёта процентов по вкладу
-
-dig = 100
+from back_end import DepositCalculator
 
 while True:
     try:
@@ -9,16 +7,17 @@ while True:
         days = input('На какой период, укажите в днях: ')
         days_year = input('Кол-во дней в году: ')
 
-        sum = (float(deposit) * int(interest_rate) * int(days)) / (int(days_year) * int(dig))
-        r_sum = (float(sum) / int(days))
-        all_sum = float(r_sum) + float(sum) + float(deposit)
-        plus_balance = float(all_sum) - float(deposit)
+        my_percent = DepositCalculator(deposit, interest_rate, days, days_year)
+
     except ValueError:
         print("Вводите пожалуйста только цифры!")
         print("Начнем с начала!")
         continue
     else:
-        print("Вы получите - " + str(all_sum) + ", из них + " + str(plus_balance) + " было добавлено к вашему вкладу, " + " за " + str(days) + " дней.")
+        print("Мой депозит: ")
+        my_percent.my_deposit()
+        print("Мои проценты: ")
+        my_percent.percent()
 
     repeat = input("Посчитать еще? Напишите 'нет' для выхода из программы: ")
     if repeat == 'нет':
