@@ -14,12 +14,10 @@ while True:
         print("Начнем с начала!")
         continue
     else:
-        print("Мой депозит: ")
-        my_percent.my_deposit()
-        print("Мои проценты: ")
-        my_percent.percent()
+        print("\nМой доход с " + str(my_percent.my_deposit()) + ", состовляет " + str(my_percent.percent()) +
+              ". \nИтого я получу за " + str(my_percent.days) + " день(дней) " + str(my_percent.all_sum()))
 
-    repeat = input("Посчитать еще? Напишите 'нет' для выхода из программы: ")
+    repeat = input("\nПосчитать еще? Напишите 'нет' для выхода из программы: ")
     if repeat == 'нет':
         break
     else:
