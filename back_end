@@ -12,10 +12,15 @@ class DepositCalculator:
 
     def my_deposit(self):
         """Считывает мой депозит"""
-        print(self.deposit)
+        return self.deposit
 
     def percent(self):
         """Высчитывает процент от вклада, без реинвестирования"""
         sum = (float(self.deposit) * int(self.interest_rate) * int(self.days)) / (int(self.days_year) * 100)
         sum = float('{:.3}'.format(sum))
-        print(sum)
+        return sum
+
+    def all_sum(self):
+        """Сложения депозита и дохода"""
+        am = float(self.percent()) + int(self.my_deposit())
+        return am
