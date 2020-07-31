@@ -1,0 +1,21 @@
+import random
+tables = []
+digits = list(range(1,11))
+for digit in digits:
+    for i in range(1, 11):
+        t = digit * i
+        tables.append(f"{digit} * {i} = {t}")
+print(f"--- Таблица умножения ---")
+for table in tables:
+    print(table)
+
+while True:
+    example = random.choice(tables)
+    ex = input(f"Сколько будет? {example[:8]}")
+    if ex == 'q':
+        print("Приходи еще с новыми знаниями.")
+        break
+    if ex in example[8:]:
+        print(f"Молодец! Ты прав число равно {example[8:]}")
+    else:
+        print(f"Учим дальше! На самом деле число {example[8:]}")
