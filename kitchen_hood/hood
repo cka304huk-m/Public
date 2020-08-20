@@ -46,11 +46,12 @@ class Hood():
     def result(self):
         """Итоговый результат"""
         if self.show_message().lower() == 'да':
-            mresult = self.yes_m2() * self.m_height() * self.ventilation * self.reserve_power_factor
+            mresult = self.yes_m2() * self.m_height()\
+                      * self.ventilation * self.reserve_power_factor
         else:
-            mresult = self.no_m2() * self.m_height() * self.ventilation * self.reserve_power_factor
+            mresult = self.no_m2() * self.m_height()\
+                      * self.ventilation * self.reserve_power_factor
         print(f"Необходимая мощность мотора в кубах - {mresult}\n")
-        self.repeat()
 
     def repeat(self):
         """Зацикливаю приложение, пока пользователь не введет 'выход'"""
@@ -65,3 +66,4 @@ class Hood():
 
 my = Hood()
 my.result()
+my.repeat()
