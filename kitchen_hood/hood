@@ -1,1 +1,67 @@
-new
+class Hood():
+    """Обсновной класс с параметрами вытяжки"""
+
+    def __init__(self):
+        """Инициалаизирую параметры"""
+        self.ventilation = 12             # Оптимальный воздухообмен за час
+        self.reserve_power_factor = 1.6   # коэффициент резервной мощности
+
+    def show_message(self):
+        message = input("Известна ли площадь кухни? Да/нет? ")
+        return message
+
+    def m_height(self):
+        """Высота"""
+        try:
+            m_height = input('Выстота: ')
+            m_height = float(m_height)
+        except ValueError:
+            print("Нельзя вводить буквы, давайте попробуем с начала...")
+        else:
+            return m_height
+
+    def yes_m2(self):
+        """Если известна квадратура кухни"""
+        try:
+            m_m2 = input('Введите сколько квадратов кухня: ')
+            m_m2 = float(m_m2)
+        except ValueError:
+            print("Нельзя вводить буквы, давайте попробуем с начала...")
+        else:
+            return m_m2
+
+    def no_m2(self):
+        """Если не известна квадратура кухни, нужно её высчитать."""
+        try:
+            m_width = input("Ширина: ")
+            m_width = float(m_width)
+            m_length = input("Длина: ")
+            m_length = float(m_length)
+            area_m2 = m_width * m_length
+        except ValueError:
+            print("Нельзя вводить буквы, давайте попробуем с начала...")
+        else:
+            return area_m2
+
+    def result(self):
+        """Итоговый результат"""
+        if self.show_message().lower() == 'да':
+            mresult = self.yes_m2() * self.m_height() * self.ventilation * self.reserve_power_factor
+        else:
+            mresult = self.no_m2() * self.m_height() * self.ventilation * self.reserve_power_factor
+        print(f"Необходимая мощность мотора в кубах - {mresult}\n")
+        self.repeat()
+
+    def repeat(self):
+        """Зацикливаю приложение, пока пользователь не введет 'выход'"""
+        while True:
+            mess = input("Повторим подсчёт? 'Да' или 'нет' для завершения приложения: ")
+            if mess.lower() == 'да':
+                self.result()
+            elif mess.lower() == 'нет':
+                break
+
+
+
+my = Hood()
+my.result()
