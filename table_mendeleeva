@@ -2,7 +2,7 @@
 import random
 
 def gen_tables():
-    """Тут храниться все сгенерированная таблица"""
+    """Тут храниться вся сгенерированная таблица"""
     tables = []
     digits = list(range(1, 11))
     for digit in digits:
