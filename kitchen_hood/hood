@@ -6,14 +6,33 @@ class Hood():
         self.ventilation = 12             # Оптимальный воздухообмен за час
         self.reserve_power_factor = 1.6   # коэффициент резервной мощности
 
-    def show_message(self):
-        message = input("Известна ли площадь кухни? Да/нет? ")
-        return message
+    def show_menu(self):
+        """Показывает меню для выбора нужной операции."""
+        choice = None
+        while choice != "0":
+            print(
+                """
+                Меню:
+                0 - Выход
+                1 - Нужно узнать площадь, а затем расчитать мощность двигателя
+                2 - Площадь известна нужно расчитать мощность двигателя.
+                """
+            )
+            choice = input("Ваш быбор - ")
+            if choice == "0":
+                print("Спасибо за использование моей программы.")
+            elif choice == "1":
+                self.result_one()
+            elif choice == "2":
+                self.result_two()
+            else:
+                print(f"Простите, но пункта '{choice}' нет в меню.")
+
 
     def m_height(self):
         """Высота"""
         try:
-            m_height = input('Выстота: ')
+            m_height = input('Высота: ')
             m_height = float(m_height)
         except ValueError:
             print("Нельзя вводить буквы, давайте попробуем с начала...")
@@ -21,7 +40,7 @@ class Hood():
             return m_height
 
     def yes_m2(self):
-        """Если известна квадратура кухни"""
+        """Если известна площадь кухни"""
         try:
             m_m2 = input('Введите сколько квадратов кухня: ')
             m_m2 = float(m_m2)
@@ -43,27 +62,18 @@ class Hood():
         else:
             return area_m2
 
-    def result(self):
-        """Итоговый результат"""
-        if self.show_message().lower() == 'да':
-            mresult = self.yes_m2() * self.m_height()\
-                      * self.ventilation * self.reserve_power_factor
-        else:
-            mresult = self.no_m2() * self.m_height()\
+    def result_one(self):
+        """Итоговый результат, если известна площадь кухни"""
+        mresult = self.yes_m2() * self.m_height()\
                       * self.ventilation * self.reserve_power_factor
         print(f"Необходимая мощность мотора в кубах - {mresult}\n")
 
-    def repeat(self):
-        """Зацикливаю приложение, пока пользователь не введет 'выход'"""
-        while True:
-            mess = input("Повторим подсчёт? 'Да' или 'нет' для завершения приложения: ")
-            if mess.lower() == 'да':
-                self.result()
-            elif mess.lower() == 'нет':
-                break
-
+    def result_two(self):
+        """Итоговый результат, при котором не известна площадь кухни."""
+        result = self.no_m2() * self.m_height()\
+                      * self.ventilation * self.reserve_power_factor
+        print(f"Необходимая мощность мотора в кубах - {result}\n")
 
 
 my = Hood()
-my.result()
-my.repeat()
+my.show_menu()
