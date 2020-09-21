@@ -8,17 +8,18 @@ class Hood():
 
     def show_menu(self):
         """Показывает меню для выбора нужной операции."""
+        print("\nКалькулятор расчитаывает необходимую куб. кухонной вытяжки.")
         choice = None
         while choice != "0":
             print(
                 """
                 Меню:
-                0 - Выход
-                1 - Нужно узнать площадь, а затем расчитать мощность двигателя
-                2 - Площадь известна нужно расчитать мощность двигателя.
+                0 - Выход.
+                1 - Площадь известна?
+                2 - Посчитать площадь?
                 """
             )
-            choice = input("Ваш быбор - ")
+            choice = input("Ваш выбор - ")
             if choice == "0":
                 print("Спасибо за использование моей программы.")
             elif choice == "1":
@@ -66,13 +67,13 @@ class Hood():
         """Итоговый результат, если известна площадь кухни"""
         mresult = self.yes_m2() * self.m_height()\
                       * self.ventilation * self.reserve_power_factor
-        print(f"Необходимая мощность мотора в кубах - {mresult}\n")
+        print(f"\nНеобходимая мощность мотора в кубах - {mresult}\n")
 
     def result_two(self):
         """Итоговый результат, при котором не известна площадь кухни."""
         result = self.no_m2() * self.m_height()\
                       * self.ventilation * self.reserve_power_factor
-        print(f"Необходимая мощность мотора в кубах - {result}\n")
+        print(f"\nНеобходимая мощность мотора в кубах - {result}\n")
 
 
 my = Hood()
