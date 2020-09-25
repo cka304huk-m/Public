@@ -32,7 +32,7 @@ def dict_morze_text():
         dict_morze_text[v] = k
     return dict_morze_text
 
-def translate_words_in_morze(event):
+def translate_words_in_morze():
     """Переводит слова в азубку морзе."""
     words_codes = entry1.get()
     code = ''
@@ -41,7 +41,7 @@ def translate_words_in_morze(event):
             code += dict_morze()[l].replace(' ', '') + " "
     rezult.insert(1.0, code)
 
-def translate_morze_in_words(event):
+def translate_morze_in_words():
     """Перевожу код азбуки в обратно в текст."""
     codes_words = entry1.get()
     word = ""
@@ -91,7 +91,7 @@ entry1.grid(row=0, column=0)
 # Создаю кнопки
 button1 = Button(frame3, text="Код", command=translate_words_in_morze)
 button1.grid(row=0, column=0)
-button2 = Button(frame3, text="Текст")
+button2 = Button(frame3, text="Текст", command=translate_morze_in_words)
 button2.grid(row=0, column=1)
 
 # Результат
@@ -101,9 +101,5 @@ rezult.grid(row=0, column=0)
 # Кнопки под результатом
 button3 = Button(frame5, text="Очистить", command=deleteText)
 button3.grid(row=0, column=0)
-
-# Нажатие кнопки
-button1.bind("<Button-1>", translate_words_in_morze)
-button2.bind("<Button-1>", translate_morze_in_words)
 
 root.mainloop()
