@@ -23,17 +23,9 @@ class AzbukaMorze():
             "'": '•----•', '"': '•-••-•',
             '—': '-••••-', '/': '-••-•',
             '?': '••--••', '!': '--••--',
-            '@': '•--•-•',
+            '@': '•--•-•', ' ': ' ',
         }
         return rus
-
-    def dict_morze_text(self):
-        """Конвертирую словарь morze наоборот"""
-        dict_morze_text = {}
-        for k, v in self.dict_morze().items():
-            dict_morze_text[v] = k
-        return dict_morze_text
-
 
     def show_menu(self):
         """Показывает меню"""
@@ -41,9 +33,8 @@ class AzbukaMorze():
             """
             Меню:
             0 - Выход.
-            1 - Перевести символ на азбуку
-            2 - Перевести слово или предложение на азбуку
-            3 - Перевести азбуку в символ
+            1 - Перевести слово или предложение на азбуку
+            2 - Перевести азбуку в символ или слово/предложение.
             """
               )
 
@@ -56,22 +47,9 @@ class AzbukaMorze():
             if choice == "0":
                 print("До свидания!")
             elif choice == "1":
-                self.translate_liter_in_morze()
-            elif choice == "2":
                 self.translate_words_in_morze()
-            elif choice == "3":
+            elif choice == "2":
                 self.translate_morze_in_words()
-
-
-    def translate_liter_in_morze(self):
-        """Переводит букву в сиволы для передачи по азбуке морзе."""
-        litter = input("Какую букву или сивол перевести: ")
-        litter = litter.lower()
-        if len(litter) == 1:
-            if litter in self.dict_morze():
-                print(f"Символ {litter} переводится вот так: {self.dict_morze()[litter].replace(' ', '')}")
-        else:
-            print('Извините, но я не могу перевести больше 1 символа, выберите другой пункт в меню.')
 
     def translate_words_in_morze(self):
         """Переводит слова в азубку морзе."""
@@ -85,11 +63,11 @@ class AzbukaMorze():
     def translate_morze_in_words(self):
         """Перевожу код азбуки в обратно в текст."""
         word = ""
-        code = input("Код для расшифровки: ")
-        code = code.split()
+        code = input("Код для расшифровки: ").split()
         for c in code:
-            if c in self.dict_morze_text():
-                word += self.dict_morze_text()[c]
+            for k, v in self.dict_morze().items():
+                if v == c:
+                    word += k + ' '
         print(f"Расшифровываю, это - {word}")
 
 my = AzbukaMorze()
