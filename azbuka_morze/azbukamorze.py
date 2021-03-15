@@ -7,11 +7,6 @@ class AzbukaMorze:
     def __init__(self, string):
         self.__string = string
 
-    def set_string(self, string):
-        """Установка значения
-        в строку."""
-        self.__string = string
-
     def get_string(self):
         """Получения значения из строки."""
         return self.__string
