@@ -1,7 +1,6 @@
 # Бэкапер директории с возможностью
 # исключать некоторые файлы.
 from backup import Backup
-import os, zipfile
 
 def main():
 
