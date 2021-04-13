@@ -27,23 +27,22 @@ class Backup:
 
     # Методы-модификаторы.
     def set_exclude_files(self, files):
+
         # Исключения файлов из копии
-        # и возразение модифицированых.
+        # и возращение модифицированого списка.
         print('Список файлов:')
         for f in files:
             print(f)
 
         print()
-        exc_files = input('Что исключить из копии(через пробел): ')
-        exc_files = exc_files.split()
-        for ef in exc_files:
-            if ef in files:
-                files.remove(ef)
-                print(f'Исключил из копии файлов: {ef}')
+        mod_files = input('Что исключить из копии(через пробел): ')
+        mod_files = mod_files.split()
+        for mf in mod_files:
+            print(f'Исключил из копии файлов: {mf}')
 
-        return files
+        return mod_files
 
-    def zip_file(self):
+    def zip_file(self, mod_files):
         """Архивация файлов"""
 
         # Название архива будет текущая дата/месяц/год
@@ -58,14 +57,18 @@ class Backup:
 
             # Обход всего дерева директории и сжатие файлов в каждой папке
             for dir_, subdirs, files in os.walk(self.__dir_f):
-                print(f'Добавление файлов из директории {dir_}...')
-                # Имя текущей директории в архиве
-                archDirName = '/'.join([archDirName, os.path.basename(dir_)]).strip('/')
-                # Добавить в архив текущую директорию
-                newBackup.write(dir_, archDirName)
+                if dir_ not in mod_files:
+                    print(f'Добавление файлов из директории {dir_}...')
+                    # Имя текущей директории в архиве
+                    archDirName = '/'.join([archDirName, os.path.basename(dir_)]).strip('/')
+                    # Добавить в архив текущую директорию
+                    newBackup.write(dir_, archDirName)
 
                 # Добавить в архив файлы из текущей директории
                 for file in files:
-                    # Имя текущего файла в архиве
-                    archFileName = archDirName + '/' + file
-                    newBackup.write(os.path.join(dir_, file), archFileName)
+                    # Проверяю файлы с модифицированым списком.
+                    # Если файлы есть в списке, он добавляется в архив.
+                    if file not in mod_files:
+                        # Имя текущего файла в архиве
+                        archFileName = archDirName + '/' + file
+                        newBackup.write(os.path.join(dir_, file), archFileName)

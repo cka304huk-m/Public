@@ -14,8 +14,8 @@ def main():
 
     # Вывожу список файлов и прошу указать
     # что исключить из резервной копии.
-    #ef = my_backup.set_exclude_files(my)
+    ef = my_backup.set_exclude_files(my)
 
-    my_backup.zip_file()
+    my_backup.zip_file(ef)
 
 main()
