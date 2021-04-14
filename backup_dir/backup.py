@@ -1,4 +1,4 @@
-import os, datetime, os, zipfile
+import datetime, os, zipfile
 
 # Класс 'Резервное копирование'.
 class Backup:
@@ -63,8 +63,11 @@ class Backup:
 
                 for file in files:
                     # Если файла нет в списке исключений.
-                    if file not in exclude_files:
+                    if file not in exclude_files and file != filename:
                         print(f'Добавил в архив {filename} файл - {file}')
                         newBackup.write(os.path.join(folder, file),
                         os.path.relpath(os.path.join(folder, file),
                         self.__dir_f))
+
+        # Возвращаю название файла.
+        return filename
