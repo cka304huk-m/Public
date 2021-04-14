@@ -23,7 +23,7 @@ def main():
 
     print()
     up_f = input('Загрузить файл? ДА/НЕТ ')
-    if up_f.lower() == 'да':
+    if up_f.lower() == 'да' or up_f.lower() == 'lf':
         # Загрузка файла на Mega.NZ
         upload.upload_file(namef)
     else:
