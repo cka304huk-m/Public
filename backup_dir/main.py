@@ -1,5 +1,5 @@
-# Резервная копия файлов в заданом каталоге.
-
+# Бэкапер директории с возможностью
+# исключать некоторые файлы.
 from backup import Backup
 
 def main():
@@ -14,8 +14,8 @@ def main():
 
     # Вывожу список файлов и прошу указать
     # что исключить из резервной копии.
-    ef = my_backup.set_exclude_files(my)
+    exclude_files = my_backup.set_exclude_files(my)
 
-    my_backup.zip_file(ef)
+    my_backup.zip_file(exclude_files)
 
 main()

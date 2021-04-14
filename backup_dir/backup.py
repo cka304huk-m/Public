@@ -27,7 +27,6 @@ class Backup:
 
     # Методы-модификаторы.
     def set_exclude_files(self, files):
-
         # Исключения файлов из копии
         # и возращение модифицированого списка.
         print('Список файлов:')
@@ -42,7 +41,7 @@ class Backup:
 
         return mod_files
 
-    def zip_file(self, mod_files):
+    def zip_file(self, exclude_files):
         """Архивация файлов"""
 
         # Название архива будет текущая дата/месяц/год
@@ -52,23 +51,20 @@ class Backup:
                              zipfile.ZIP_DEFLATED,
                              allowZip64=True) as newBackup:
 
-            # Переменая для сохранения имени каталога.
-            archDirName = ''
+            print()
 
-            # Обход всего дерева директории и сжатие файлов в каждой папке
-            for dir_, subdirs, files in os.walk(self.__dir_f):
-                if dir_ not in mod_files:
-                    print(f'Добавление файлов из директории {dir_}...')
-                    # Имя текущей директории в архиве
-                    archDirName = '/'.join([archDirName, os.path.basename(dir_)]).strip('/')
-                    # Добавить в архив текущую директорию
-                    newBackup.write(dir_, archDirName)
+            # Обход всего дерева директории.
+            for folder, subfolders, files in os.walk(self.__dir_f):
+                for sub in subfolders:
+                    # Если папка есть в списки исключений.
+                    if sub in exclude_files:
+                        # Удалить папку из архивации.
+                        subfolders.remove(sub)
 
-                # Добавить в архив файлы из текущей директории
                 for file in files:
-                    # Проверяю файлы с модифицированым списком.
-                    # Если файла нет в списке, он добавляется в архив.
-                    if file not in mod_files:
-                        # Имя текущего файла в архиве
-                        archFileName = archDirName + '/' + file
-                        newBackup.write(os.path.join(dir_, file), archFileName)
+                    # Если файла нет в списке исключений.
+                    if file not in exclude_files:
+                        print(f'Добавил в архив {filename} файл - {file}')
+                        newBackup.write(os.path.join(folder, file),
+                        os.path.relpath(os.path.join(folder, file),
+                        self.__dir_f))
