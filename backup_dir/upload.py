@@ -6,8 +6,8 @@ def upload_file(namef):
     # Создаю экзепляр.
     mega = Mega()
 
-    email = 'электронная почта'
-    password = 'пароль'
+    email = 'ваша почта'
+    password = 'ваш пароль'
 
     # Название файла.
     filename = namef
@@ -19,10 +19,20 @@ def upload_file(namef):
 
     # Загружаю файл на облачное хранилище.
     if folder:
-        up_folder = m.find(folder)
-        file = m.upload(filename, up_folder[0])
-        # Получаю ссылку на него.
-        link = m.get_upload_link(file)
+        try:
+            up_folder = m.find(folder)
+            file = m.upload(filename, up_folder[0])
+            # Получаю ссылку на него.
+            link = m.get_upload_link(file)
+        # Если папки не существует.
+        except TypeError:
+            # Создаю папку.
+            m.create_folder(folder)
+            # Ищу папку в облаке.
+            up_folder = m.find(folder)
+            file = m.upload(filename, up_folder[0])
+            # Получаю ссылку на него.
+            link = m.get_upload_link(file)
     else:
         file = m.upload(filename)
         # Получаю ссылку на него.
