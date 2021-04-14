@@ -51,9 +51,20 @@ class Backup:
                              zipfile.ZIP_DEFLATED,
                              allowZip64=True) as newBackup:
 
-            # Обход всего дерева директории и сжатие файлов в каждой папке
+            print()
+
+            # Обход всего дерева директории.
             for folder, subfolders, files in os.walk(self.__dir_f):
+                for sub in subfolders:
+                    # Если папка есть в списки исключений.
+                    if sub in exclude_files:
+                        # Удалить папку из архивации.
+                        subfolders.remove(sub)
+
                 for file in files:
+                    # Если файла нет в списке исключений.
                     if file not in exclude_files:
+                        print(f'Добавил в архив {filename} файл - {file}')
                         newBackup.write(os.path.join(folder, file),
-                                        os.path.relpath(os.path.join(folder, file), self.__dir_f))
+                        os.path.relpath(os.path.join(folder, file),
+                        self.__dir_f))
