@@ -21,7 +21,10 @@ class Backup:
 
     def get_data_now(self):
         now = datetime.datetime.now()
-        data_string = f'{now.day}_{now.month}_{now.year}'
+        d_month = now.month
+        if d_month < 10:
+            d_month = f'0{d_month}'
+        data_string = f'{now.day}_{d_month}_{now.year}'
 
         return data_string
 
