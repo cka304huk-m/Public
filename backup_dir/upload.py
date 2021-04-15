@@ -1,13 +1,12 @@
 # Загрузка файлов на облачное хранилище.
 from mega import Mega
+# Импортирую файл с логином и паролем.
+import mega_log_pass
 
 def upload_file(namef):
 
     # Создаю экзепляр.
     mega = Mega()
-
-    email = 'ваша почта'
-    password = 'ваш пароль'
 
     # Название файла.
     filename = namef
@@ -15,7 +14,7 @@ def upload_file(namef):
 
     # Захожу на облачное хранилище под
     # своим аккаунтом.
-    m = mega.login(email, password)
+    m = mega.login(mega_log_pass.email, mega_log_pass.password)
 
     # Загружаю файл на облачное хранилище.
     if folder:
