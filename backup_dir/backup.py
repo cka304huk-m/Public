@@ -54,7 +54,7 @@ class Backup:
             print()
 
             # Обход всего дерева директории.
-            for folder, subfolders, files in os.walk(self.__dir_f):
+            for folder, subfolders, files in os.walk(self.get_dir_files()):
                 for sub in subfolders:
                     # Если папка есть в списки исключений.
                     if sub in exclude_files:
@@ -67,7 +67,7 @@ class Backup:
                         print(f'Добавил в архив {filename} файл - {file}')
                         newBackup.write(os.path.join(folder, file),
                         os.path.relpath(os.path.join(folder, file),
-                        self.__dir_f))
+                        self.get_dir_files()))
 
         # Возвращаю название файла.
         return filename
