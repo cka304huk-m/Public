@@ -1,9 +1,24 @@
 # Счётчик банкнот.
-
 import tkinter
 
 class MyNote:
     def __init__(self):
+        self.settings_window()
+
+        self.description_input()
+
+        self.button_()
+
+        self.results()
+
+        self.packing()
+
+        # Запускаю цикл.
+        self.main_window.mainloop()
+
+    def settings_window(self):
+        # Настройки окна.
+
         # Создаю главное окно.
         self.main_window = tkinter.Tk()
 
@@ -13,16 +28,19 @@ class MyNote:
         # Размер окна.
         self.main_window.geometry('195x320')
 
-        # Отключаю разворот экрана.
+        # Отключаю разворот окна.
         self.main_window.resizable(False, False)
 
-        # Описание в которое положу резуьтат суммирования.
+        # Описание в которое положу результат суммирования.
         self.value = tkinter.StringVar()
 
         # Шрифт и размер.
         self.my_font = 14
 
-        # Создаю рамки для описания и ввода купюр.
+    def description_input(self):
+        # Описание и ввод рублей.
+
+        # Рамки для описания и ввода купюр.
         self.frame_5000 = tkinter.Frame(self.main_window)
         self.frame_2000 = tkinter.Frame(self.main_window)
         self.frame_1000 = tkinter.Frame(self.main_window)
@@ -61,16 +79,16 @@ class MyNote:
 
         # Описание 500 рублей.
         self.label_500 = tkinter.Label(self.frame_500,
-                                        text='  500: ',
-                                        font=self.my_font)
+                                       text='  500: ',
+                                       font=self.my_font)
         # Окно для ввода количества 500 рублей.
         self.entry_500 = tkinter.Entry(self.frame_500,
-                                        width=15)
+                                       width=15)
 
         # Описание 200 рублей.
         self.label_200 = tkinter.Label(self.frame_200,
                                        text='  200: ',
-                                        font=self.my_font)
+                                       font=self.my_font)
         # Окно для ввода количества 200 рублей.
         self.entry_200 = tkinter.Entry(self.frame_200,
                                        width=15)
@@ -78,39 +96,39 @@ class MyNote:
         # Описание 100 рублей.
         self.label_100 = tkinter.Label(self.frame_100,
                                        text='  100: ',
-                                        font=self.my_font)
+                                       font=self.my_font)
         # Окно для ввода количества 100 рублей.
         self.entry_100 = tkinter.Entry(self.frame_100,
                                        width=15)
 
         # Описание 50 рублей.
         self.label_50 = tkinter.Label(self.frame_50,
-                                       text='    50: ',
-                                        font=self.my_font)
+                                      text='    50: ',
+                                      font=self.my_font)
         # Окно для ввода количества 50 рублей.
         self.entry_50 = tkinter.Entry(self.frame_50,
-                                       width=15)
+                                      width=15)
 
         # Описание 10 рублей.
         self.label_10 = tkinter.Label(self.frame_10,
                                       text='    10: ',
-                                        font=self.my_font)
+                                      font=self.my_font)
         # Окно для ввода количества 50 рублей.
         self.entry_10 = tkinter.Entry(self.frame_10,
                                       width=15)
 
         # Описание 5 рублей.
         self.label_5 = tkinter.Label(self.frame_5,
-                                      text='      5: ',
-                                        font=self.my_font)
+                                     text='      5: ',
+                                     font=self.my_font)
         # Окно для ввода количества 5 рублей.
         self.entry_5 = tkinter.Entry(self.frame_5,
-                                      width=15)
+                                     width=15)
 
         # Описание 2 рубля.
         self.label_2 = tkinter.Label(self.frame_2,
                                      text='      2: ',
-                                        font=self.my_font)
+                                     font=self.my_font)
         # Окно для ввода количества 2 рублей.
         self.entry_2 = tkinter.Entry(self.frame_2,
                                      width=15)
@@ -118,12 +136,15 @@ class MyNote:
         # Описание 1 рубля.
         self.label_1 = tkinter.Label(self.frame_1,
                                      text='      1: ',
-                                        font=self.my_font)
+                                     font=self.my_font)
         # Окно для ввода количества 1 рублей.
         self.entry_1 = tkinter.Entry(self.frame_1,
                                      width=15)
 
-        # Создаю рамку для кнопки посчитать.
+    def button_(self):
+        # Располагаю рамку для кнопки и саму кнопку.
+
+        # Рамка для кнопки посчитать.
         self.button_result_frame = tkinter.Frame(self.main_window)
 
         # Кнопка показать деньги.
@@ -131,15 +152,19 @@ class MyNote:
                                             text='Сумма в кассе', width=18,
                                             command=self.result_summa)
 
-        # Создать рамку для вывода результата.
+    def results(self):
+        # Выводит результаты.
+
+        # Рамка для вывода результата.
         self.frame_result = tkinter.Frame(self.main_window)
 
-        # Создать описание которое будет равное сумме денег.
+        # Описание равное сумме денег.
         self.label_result = tkinter.Label(self.frame_result,
                                           textvariable=self.value,
                                           font=('Arial', 22))
 
-        # Упаковываю ресурсы.
+    def packing(self):
+        # Упаковываю рамки, кнопки...
         self.frame_5000.pack()
         self.label_5000.pack(side='left')
         self.entry_5000.pack(side='left')
@@ -189,9 +214,6 @@ class MyNote:
 
         self.frame_result.pack()
         self.label_result.pack()
-
-        # Запускаю цикл.
-        self.main_window.mainloop()
 
     def result_summa(self):
         # Результат подсчета.
