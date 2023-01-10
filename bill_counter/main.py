@@ -55,7 +55,7 @@ class MyNote:
 
         # Описание 5000 рублей.
         self.label_5000 = tkinter.Label(self.frame_5000,
-                                        text='5000: ',
+                                        text=f'{5000:6}: ',
                                         font=self.my_font)
         # Окно для ввода количества 5000 рублей.
         self.entry_5000 = tkinter.Entry(self.frame_5000,
@@ -63,7 +63,7 @@ class MyNote:
 
         # Описание 2000 рублей.
         self.label_2000 = tkinter.Label(self.frame_2000,
-                                        text='2000: ',
+                                        text=f'{2000:6}: ',
                                         font=self.my_font)
         # Окно для ввода количества 2000 рублей.
         self.entry_2000 = tkinter.Entry(self.frame_2000,
@@ -71,7 +71,7 @@ class MyNote:
 
         # Описание 1000 рублей.
         self.label_1000 = tkinter.Label(self.frame_1000,
-                                        text='1000: ',
+                                        text=f'{1000:6}: ',
                                         font=self.my_font)
         # Окно для ввода количества 1000 рублей.
         self.entry_1000 = tkinter.Entry(self.frame_1000,
@@ -79,7 +79,7 @@ class MyNote:
 
         # Описание 500 рублей.
         self.label_500 = tkinter.Label(self.frame_500,
-                                       text='  500: ',
+                                       text=f'{500:7}: ',
                                        font=self.my_font)
         # Окно для ввода количества 500 рублей.
         self.entry_500 = tkinter.Entry(self.frame_500,
@@ -87,7 +87,7 @@ class MyNote:
 
         # Описание 200 рублей.
         self.label_200 = tkinter.Label(self.frame_200,
-                                       text='  200: ',
+                                       text=f'{200:7}: ',
                                        font=self.my_font)
         # Окно для ввода количества 200 рублей.
         self.entry_200 = tkinter.Entry(self.frame_200,
@@ -95,7 +95,7 @@ class MyNote:
 
         # Описание 100 рублей.
         self.label_100 = tkinter.Label(self.frame_100,
-                                       text='  100: ',
+                                       text=f'{100:7}: ',
                                        font=self.my_font)
         # Окно для ввода количества 100 рублей.
         self.entry_100 = tkinter.Entry(self.frame_100,
@@ -103,7 +103,7 @@ class MyNote:
 
         # Описание 50 рублей.
         self.label_50 = tkinter.Label(self.frame_50,
-                                      text='    50: ',
+                                      text=f'{50:8}: ',
                                       font=self.my_font)
         # Окно для ввода количества 50 рублей.
         self.entry_50 = tkinter.Entry(self.frame_50,
@@ -111,7 +111,7 @@ class MyNote:
 
         # Описание 10 рублей.
         self.label_10 = tkinter.Label(self.frame_10,
-                                      text='    10: ',
+                                      text=f'{10:8}: ',
                                       font=self.my_font)
         # Окно для ввода количества 50 рублей.
         self.entry_10 = tkinter.Entry(self.frame_10,
@@ -119,7 +119,7 @@ class MyNote:
 
         # Описание 5 рублей.
         self.label_5 = tkinter.Label(self.frame_5,
-                                     text='      5: ',
+                                     text=f'{5:9}: ',
                                      font=self.my_font)
         # Окно для ввода количества 5 рублей.
         self.entry_5 = tkinter.Entry(self.frame_5,
@@ -127,7 +127,7 @@ class MyNote:
 
         # Описание 2 рубля.
         self.label_2 = tkinter.Label(self.frame_2,
-                                     text='      2: ',
+                                     text=f'{2:9}: ',
                                      font=self.my_font)
         # Окно для ввода количества 2 рублей.
         self.entry_2 = tkinter.Entry(self.frame_2,
@@ -135,7 +135,7 @@ class MyNote:
 
         # Описание 1 рубля.
         self.label_1 = tkinter.Label(self.frame_1,
-                                     text='      1: ',
+                                     text=f'{1:9}: ',
                                      font=self.my_font)
         # Окно для ввода количества 1 рублей.
         self.entry_1 = tkinter.Entry(self.frame_1,
