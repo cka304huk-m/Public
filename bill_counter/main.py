@@ -26,7 +26,7 @@ class MyNote:
         self.main_window.title('Счётчик банкнот')
 
         # Размер окна.
-        self.main_window.geometry('195x320')
+        self.main_window.geometry('195x470')
 
         # Отключаю разворот окна.
         self.main_window.resizable(False, False)
@@ -34,8 +34,12 @@ class MyNote:
         # Описание в которое положу результат суммирования.
         self.value = tkinter.StringVar()
 
+        # описание в которое положу результат разницы.
+        self.value_hand = tkinter.StringVar()
+
         # Шрифт и размер.
-        self.my_font = 14
+        self.my_font = 'Arial', 14
+        self.font_result = 'Arial', 22
 
     def description_input(self):
         # Описание и ввод рублей.
@@ -44,6 +48,13 @@ class MyNote:
         self.entry_note()
 
     def frame_note(self):
+        # Рамка где будет сумма в кассе.
+        self.frame_hand = tkinter.Frame(self.main_window)
+
+        # Пустая рамка для отделения ввода купюр,
+        # от остатка в программе.
+        self.frame_empty = tkinter.Frame(self.main_window)
+
         # Рамки для описания и ввода купюр.
         self.frame_5000 = tkinter.Frame(self.main_window)
         self.frame_2000 = tkinter.Frame(self.main_window)
@@ -58,6 +69,14 @@ class MyNote:
         self.frame_1 = tkinter.Frame(self.main_window)
 
     def description_note(self):
+        # Описание сколько денег в кассе.
+        self.hand_label = tkinter.Label(self.frame_hand,
+                                  text='Сумма денег в программе:')
+
+        # Пустое описание с переносом строки, для отделения полей.
+        self.empty_label = tkinter.Label(self.frame_empty,
+                                         text=f'{"-" * 38}',)
+
         # Описание 5000 рублей.
         self.label_5000 = tkinter.Label(self.frame_5000,
                                         text=f'{5000:6}: ',
@@ -114,6 +133,10 @@ class MyNote:
                                      font=self.my_font)
 
     def entry_note(self):
+        # Окно ввода суммы в кассе.
+        self.hand_entry = tkinter.Entry(self.frame_hand,
+                                        width=25)
+
         # Окно для ввода количества 5000 рублей.
         self.entry_5000 = tkinter.Entry(self.frame_5000,
                                         width=15)
@@ -175,13 +198,29 @@ class MyNote:
         # Рамка для вывода результата.
         self.frame_result = tkinter.Frame(self.main_window)
 
-        # Описание равное сумме денег.
+        # Описание сумма денег.
         self.label_result = tkinter.Label(self.frame_result,
                                           textvariable=self.value,
-                                          font=('Arial', 22))
+                                          font=self.font_result)
+
+        # Рамка для вывода разницы суммы в программе от посчитанной.
+        self.frame_difference = tkinter.Frame(self.main_window)
+        self.label0_difference = tkinter.Label(self.frame_difference,
+                                               text=f'{"Разница:"}',
+                                               font=self.my_font)
+        self.label_difference = tkinter.Label(self.frame_difference,
+                                              textvariable=self.value_hand,
+                                              font=self.font_result)
 
     def packing(self):
         # Упаковываю рамки, кнопки...
+        self.frame_hand.pack()
+        self.hand_label.pack()
+        self.hand_entry.pack()
+
+        self.frame_empty.pack()
+        self.empty_label.pack()
+
         self.frame_5000.pack()
         self.label_5000.pack(side='left')
         self.entry_5000.pack(side='left')
@@ -231,6 +270,10 @@ class MyNote:
 
         self.frame_result.pack()
         self.label_result.pack()
+
+        self.frame_difference.pack()
+        self.label0_difference.pack()
+        self.label_difference.pack()
 
     def result_summa(self):
         # Результат подсчета.
@@ -294,7 +337,13 @@ class MyNote:
             sum_500 + sum_200 + sum_100 + sum_50 + \
             sum_10 + sum_5 + sum_2 + sum_1
 
+        if len(self.hand_entry.get()) > 0:
+            difference_ = amount - float(self.hand_entry.get())
+        else:
+            difference_ = 0
+
         self.value.set(f'₽ {amount:,.0f} ')
+        self.value_hand.set(f'₽ {difference_:,.0f}')
 
 # Создаю экземпляр.
 if __name__ == '__main__':
