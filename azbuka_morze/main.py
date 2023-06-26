@@ -15,7 +15,10 @@ def convert(choice, string):
         string = string.upper()
         rezult = ''
         for s in string:
-            rezult += word.convertInMorse(s) + ' '
+            if s == ' ':
+                pass
+            else:
+                rezult += word.convertInMorse(s) + ' '
     elif choice == 2:
         string = string.upper().split()
         rezult = ''
