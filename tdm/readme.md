@@ -4,4 +4,5 @@
 для работы скрипта нужно установить эти библиотеки:<br>
 pip install openpyxl<br>
 pip install beautifulsoup4<br>
-pip install xls2xlsx
+pip install xls2xlsx<br>
+pip install lxml
