@@ -1,6 +1,5 @@
 import openpyxl
-from find_codeTdm import find_tdmCode
-from find_codeFortisflex import find_fortisflexCode
+from find_code import *
 from months import edit_month
 from converter import converter
 
@@ -32,11 +31,13 @@ def create_document():
         for row in range(25, sheet.max_row + 1):
             if sheet[row][3].value != None:
                 if 'SQ' in sheet[row][3].value[:2]:
-                    new_code = find_tdmCode(sheet[row][3].value)
+                    n = FindCode(sheet[row][3].value)
+                    new_code = n.find_tdm()
                     new_string = f';{new_code};;;;;;{sheet[row][50].value};;;{sheet[row][60].value};'
                     new_file.write(new_string + '\n')
                 elif len(sheet[row][3].value) == 5:
-                    new_code = find_fortisflexCode(sheet[row][3].value)
+                    n = FindCode(sheet[row][3].value)
+                    new_code = n.find_fortisflex()
                     new_string = f';{new_code};;;;;;{sheet[row][50].value * 100};;;{sheet[row][60].value / 100};'
                     new_file.write(new_string + '\n')
                 else:
