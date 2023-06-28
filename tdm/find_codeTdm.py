@@ -10,7 +10,7 @@ def find_tdmCode(search):
     product = f'https://tdme.ru{product}'
 
     page_1 = requests.get(product)
-    soup_1 = BeautifulSoup(page_1.text, "html.parser")
+    soup_1 = BeautifulSoup(page_1.text, "lxml")
     productCode = soup_1.findAll('td', class_='lg:w-1/3 lg:w-auto py-4 lg:px-6 text-xs break-all lg:break-normal lg:text-sm text-gray-700')[10].text.strip()
 
     return productCode

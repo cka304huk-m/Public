@@ -1,5 +1,6 @@
 import openpyxl
 from find_codeTdm import find_tdmCode
+from find_codeFortisflex import find_fortisflexCode
 from months import edit_month
 from converter import converter
 
@@ -14,7 +15,7 @@ def create_document():
 
     numberDocument = sheet['B17'].value[17:24].strip()  # номер документа
     data = sheet['B17'].value[27:].split()  # Дата
-    if len(data[0])>1:
+    if len(data[0]) > 1:
         day = data[0]   # День
     else:
         day = f'0{data[0]}'  # День
@@ -33,6 +34,10 @@ def create_document():
                 if 'SQ' in sheet[row][3].value[:2]:
                     new_code = find_tdmCode(sheet[row][3].value)
                     new_string = f';{new_code};;;;;;{sheet[row][50].value};;;{sheet[row][60].value};'
+                    new_file.write(new_string + '\n')
+                elif len(sheet[row][3].value) == 5:
+                    new_code = find_fortisflexCode(sheet[row][3].value)
+                    new_string = f';{new_code};;;;;;{sheet[row][50].value * 100};;;{sheet[row][60].value / 100};'
                     new_file.write(new_string + '\n')
                 else:
                     new_string = f';{sheet[row][3].value};;;;;;{sheet[row][50].value};;;{sheet[row][60].value};'
