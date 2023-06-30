@@ -12,7 +12,8 @@ class FindCode:
     def reqBs4(self, url):
         """Переход по ссылке и получение с него данных"""
         ua = UserAgent()    # Антибот
-        page = requests.get(url, ua.random)
+        headers = {'User-Agent': ua.random}
+        page = requests.get(url, headers=headers)
         soup = BeautifulSoup(page.text, "lxml")
 
         return soup
