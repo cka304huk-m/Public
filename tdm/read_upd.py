@@ -2,14 +2,17 @@ import openpyxl
 from find_code import *
 from converter import converter
 
-def create_document():
+def main():
     try:
+        # Если файл имеет расширения не .xlsx, то сохраняю его в этот формат.
         converter()
     except:
+        # Иначе пропустить.
         pass
 
-    FC = FindCode('test')
+    create_document()
 
+def create_document():
     upd = openpyxl.open('upd.xlsx')
     sheet = upd.active
 
@@ -51,4 +54,4 @@ def create_document():
     print('\nВсе готово!')
 
 if __name__ == '__main__':
-    create_document()
+    main()

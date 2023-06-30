@@ -67,3 +67,5 @@ class FindCode:
         elif month == 'декабря':
             digMonth = '12'
         return digMonth
+
+FC = FindCode('test')
