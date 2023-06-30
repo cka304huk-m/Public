@@ -1,6 +1,5 @@
 import openpyxl
 from find_code import *
-from months import edit_month
 from converter import converter
 
 def create_document():
@@ -8,6 +7,8 @@ def create_document():
         converter()
     except:
         pass
+
+    FC = FindCode('test')
 
     upd = openpyxl.open('upd.xlsx')
     sheet = upd.active
@@ -18,7 +19,7 @@ def create_document():
         day = data[0]   # День
     else:
         day = f'0{data[0]}'  # День
-    month = edit_month(data[1]) # Месяц
+    month = FC.edit_month(data[1]) # Месяц
     year = data[2]  # Год
     data_document = f'{day}/{month}/{year}'
 
@@ -26,6 +27,9 @@ def create_document():
     comment = '=)'
 
     one_string = f'{numberDocument};{data_document};;;{inn};;;;;;;;;;;{comment};'
+
+    print('Ожидайте, сейчас происходит магия =)')
+
     with open('tdm.txt', 'w') as new_file:
         new_file.write(one_string + '\n')
         for row in range(25, sheet.max_row + 1):
@@ -44,4 +48,7 @@ def create_document():
                     new_string = f';{sheet[row][3].value};;;;;;{sheet[row][50].value};;;{sheet[row][60].value};'
                     new_file.write(new_string + '\n')
 
-create_document()
+    print('\nВсе готово!')
+
+if __name__ == '__main__':
+    create_document()

@@ -5,4 +5,5 @@
 pip install openpyxl<br>
 pip install beautifulsoup4<br>
 pip install xls2xlsx<br>
-pip install lxml
+pip install lxml<br>
+pip install fake-useragent

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+from fake_useragent import UserAgent
 
 class FindCode:
     """Поиск штрих кода на сайте производителя
@@ -10,7 +11,8 @@ class FindCode:
 
     def reqBs4(self, url):
         """Переход по ссылке и получение с него данных"""
-        page = requests.get(url)
+        ua = UserAgent()    # Антибот
+        page = requests.get(url, ua.random)
         soup = BeautifulSoup(page.text, "lxml")
 
         return soup
@@ -38,3 +40,30 @@ class FindCode:
         productCode = self.reqBs4(product).find('div', class_='col-lg-4 col-md-4 col-sm-12 logistic').findAll('li')[2].text[41:]
 
         return productCode
+
+    def edit_month(self, month):
+        if month == 'января':
+            digMonth = '01'
+        elif month == 'февраля':
+            digMonth = '02'
+        elif month == 'марта':
+            digMonth = '03'
+        elif month == 'апреля':
+            digMonth = '04'
+        elif month == 'мая':
+            digMonth = '05'
+        elif month == 'июня':
+            digMonth = '06'
+        elif month == 'июля':
+            digMonth = '07'
+        elif month == 'августа':
+            digMonth = '08'
+        elif month == 'сентября':
+            digMonth = '09'
+        elif month == 'октября':
+            digMonth = '10'
+        elif month == 'ноября':
+            digMonth = '11'
+        elif month == 'декабря':
+            digMonth = '12'
+        return digMonth
